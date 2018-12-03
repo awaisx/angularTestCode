@@ -1,0 +1,24 @@
+<div class="row" *ngIf="showList">
+  <div class="col-md-12">
+    <div class="form-group ">
+        <label for="searchBox">Search</label>
+        <input type="text" required class="form-control" placeholder="Filter Shows" name="searchBox"
+         id="searchBox" [(ngModel)]="searchBox"/>
+      </div>
+     </div> 
+</div>
+
+<div class="row">
+
+<div *ngFor="let show of showList | search : searchBox"  class="col-md-2 padding10">
+
+  
+        <div class="img-thumbnail text-center" >
+            <a  [routerLink]="['/show',show.id]">
+            <img [src]="show.image.medium" class="rounded  img-fluid"/>
+            <p class="noMargin padding10 borderTop">{{show.name.length > 18 ? show.name.slice(0, 10)+'...' : show.name}}</p>
+            </a>
+          </div>
+
+</div>
+</div>

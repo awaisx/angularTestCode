@@ -1,0 +1,24 @@
+<div class="mx-auto col-md-5">
+   
+            <h3>Login</h3>
+        <form #loginForm="ngForm" (ngSubmit)="Login(loginForm)">
+            <div class="form-group" [class.was-validated]="usernameControl.invalid && usernameControl.touched">
+                <label for="username" class="control-label">Username</label>
+                <input type="text" required class="form-control" placeholder="Enter Username (test)" name="username"
+                 id="username" [(ngModel)]="username" #usernameControl='ngModel'/>
+                 <span class="invalid-feedback">Username is Required</span>
+              </div>
+              <div class="form-group" [class.was-validated]="passwordControl.invalid && passwordControl.touched">
+                <label for="password" class="control-label">Password</label>
+                <input type="password" required class="form-control" placeholder="Password (test)" name="password"
+                 id="password" [(ngModel)]="password" #passwordControl='ngModel'/>
+                 <span class="invalid-feedback">Password is Required</span>
+              </div>
+            <div class="form-group text-center">
+                <button class="btn btn-primary w-100" [disabled]='loginForm.invalid' id="btnLogin" type="submit">Login</button>
+            </div>
+            <h6 class="text-danger text-center" *ngIf="validation">Wrong Username or Password </h6>
+        </form>
+       
+   
+</div>

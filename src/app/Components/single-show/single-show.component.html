@@ -1,0 +1,60 @@
+<ng-container *ngIf="showDetail">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <img [src]="showDetail.image.original" class="rounded  img-fluid"/>
+      </div>
+      <div class="col-md-6">
+        <h3>{{showDetail.name}}</h3>
+        <h4>Genre</h4>
+        <span *ngFor="let g of showDetail.genres">
+            <span class="badge badge-pill badge-info">{{g}}</span>
+        </span>
+      <div>
+      <h4>Average Rating</h4>
+      <p>{{showDetail.rating.average == null ? "No rating is Provided":showDetail.rating.average}}</p>
+        <h4>Summary</h4>
+       <p [innerHTML]="showDetail.summary"></p>
+      </div>
+      <div *ngIf="ShowCast">
+        <h4>Cast</h4>
+        <div class="row">
+        <div class="col-md-4 padding10" *ngFor="let cast of ShowCast">
+
+          <div class="img-thumbnail pointer " (click)="goToPeople(cast.person)">
+          
+            <img [src]="cast.person.image.medium" class="rounded  img-fluid">
+            <p class="noMargin padding10 borderTop">{{cast.person.name.length > 14 ? cast.person.name.slice(0, 14)+'...' : cast.person.name}}</p>
+           
+          </div>
+
+        </div>
+        </div>
+      </div>       
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-12">
+        <h4>List of Seasons</h4>
+        <div *ngFor="let season of showSeason">
+          <h5 class="pointer customHover" (click)="getEpisodes(season)">Season {{season.number}}</h5>
+          <div *ngIf="season.toggle && season.showSeasonEpisode == null">Loading...</div>
+          
+          <div *ngIf="season.toggle && season.showSeasonEpisode != null">
+            <div class="row">
+            <div class="col-md-3 padding10 text-center" *ngFor="let ep of season.showSeasonEpisode">
+              
+                <div class="img-thumbnail pointer " style="min-height: 190px">
+          
+                    <img [src]="ep.image.medium" class="rounded  img-fluid">
+                    <p class="noMargin padding10 borderTop">{{ep.name.length > 14 ? ep.name.slice(0, 14)+'...' :ep.name}}</p>
+                   
+                  </div>
+                  </div>
+                 
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </ng-container>

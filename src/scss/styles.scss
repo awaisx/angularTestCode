@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+$customBackground:#00578B;
+
+.bd-navbar{
+    min-height: 4rem;
+    background-color: $customBackground;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.marginBottom10{
+
+    margin-bottom: 10px;
+
+}
+.noMargin{
+    margin:0px;
+}
+.padding10{
+    padding:10px;
+}
+.borderTop{
+    border-top:1px solid #ccc;
+}
+.pointer{
+
+    cursor: pointer;
+}
+.customHover:hover{
+
+    color:#00578B;
+
+}

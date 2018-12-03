@@ -1,0 +1,46 @@
+<ng-container *ngIf="peopleDetail">
+<div class="row">
+  <div class="col-md-6 text-center">
+    <img [src]="peopleDetail.image.original" class="rounded  img-fluid"/>
+  </div>
+  <div class="col-md-6">
+    <h3>{{peopleDetail.name}}</h3>
+    <h4>Gender : {{peopleDetail.gender}}</h4>
+    <div *ngIf="showDetailCast?.length > 0; else noShowDetail">
+      <h4>Show Detail</h4>
+      <div class="row">
+     <div *ngFor="let show of showDetailCast" class="col-md-6">
+
+        <div class="img-thumbnail text-center" >
+            <a  [routerLink]="['/show',show._embedded.show.id]">
+            <img [src]="show._embedded.show.image.medium" class="rounded  img-fluid"/>
+            <p class="noMargin padding10 borderTop">{{show._embedded.show.name.length > 18 ? show._embedded.show.name.slice(0, 10)+'...' : show._embedded.show.name}}</p>
+            </a>
+          </div>
+
+    </div>
+    </div>
+  </div>
+    <ng-template #noShowDetail>
+        <h4>Show Detail</h4>No Show Detail
+      </ng-template>
+
+      <div *ngIf="showDetailCrew?.length > 0; else noDetailCrew">
+          <h4>Show Detail Crew</h4>  
+        <div *ngFor="let show of showDetailCast">
+     
+             <div class="img-thumbnail text-center" >
+                 <a  [routerLink]="['/show',show._embedded.show.id]">
+                 <img [src]="show._embedded.show.image.medium" class="rounded  img-fluid"/>
+                 <p class="noMargin padding10 borderTop">{{show._embedded.show.name.length > 18 ? show._embedded.show.name.slice(0, 10)+'...' : show.name}}</p>
+                 </a>
+               </div>
+     
+         </div>
+       </div>
+         <ng-template #noDetailCrew>
+            <h4>Show Detail Crew</h4>    No Show Detail Crew
+           </ng-template>    
+  </div>
+</div>
+</ng-container>

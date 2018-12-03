@@ -1,0 +1,38 @@
+<div class="row">
+    <form #peopleSearch='ngForm' (ngSubmit)="searchEmployee(peopleSearch)" novalidate="" class="mx-auto col-md-5">
+
+
+
+            <div class="form-group " [class.was-validated]="searchControl.invalid && searchControl.touched">
+                    <label for="search">Search</label>
+                    <input type="text" required class="form-control" placeholder="Search (3 character minimum)" name="search"
+                     id="search" [(ngModel)]="search" #searchControl='ngModel' />
+                     <span class="invalid-feedback">Search is Required</span>
+                      
+            </div>
+           <div>
+                <button type="submit" [disabled]='peopleSearch.invalid' class="btn btn-primary">Search</button>
+            </div>
+    </form>
+   
+   
+ 
+    
+</div>
+<hr>
+<div class="row">
+
+    <ng-container *ngIf="searchResult">
+        <div *ngFor="let s of searchResult" class="col-md-2 padding10">
+            <div class="img-thumbnail pointer" (click)="goToPeople(s.person)">
+              
+                    <img *ngIf="s.person.image != null" [src]="s.person.image.medium" class="rounded  img-fluid" [alt]="s.person.name" style="min-height: 225px"/>
+                    <img *ngIf="s.person.image == null" class="rounded  img-fluid" style="min-height: 225px" alt="No Image"/>
+                    <p class="noMargin padding10 borderTop">{{s.person.name.length > 18 ? s.person.name.slice(0, 10)+'...' : s.person.name}}</p>
+                  
+                </div>
+        </div>
+    </ng-container>
+
+
+</div>
